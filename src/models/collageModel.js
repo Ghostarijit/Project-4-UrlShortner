@@ -7,7 +7,7 @@ const collageSchema = new mongoose.Schema(
             type: String,
             required: true,
             unique:true,
-            uppercase:true,
+            lowercase:true,
             trim:true
         },
         fullName: {
