@@ -25,7 +25,7 @@ const getColleges = async function(req, res) {
         if (!/^[a-zA-z , ;]{2,30}$/.test(name)) {
             return res.status(400).send({ status: false, msg: "Please Enter Valied Format CollegeName" })
         }
-        let check = await collegeModel.findOne({ name: name.toUpperCase()})
+        let check = await collegeModel.findOne({ name:name.toLowerCase()})
         if (!check) {
             return res.status(400).send({ status: false, msg: "Thise College Doesn't Exist" })
         }
@@ -38,7 +38,7 @@ const getColleges = async function(req, res) {
         }
 
         let Doc = {
-            name: name.toUpperCase(),
+            name: name.toLowerCase(),
             fullName: check.fullName,
             logoLink: check.logoLink,
             interests: findintern
