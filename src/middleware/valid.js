@@ -26,7 +26,7 @@ const validatecollage = async function(req, res, next) {
         if (Object.values(name.trim()).length <= 0) { //check the values of name
             return res.status(400).send("The name is required");
         }
-        if (!(/^[A-Za-z ]+$/.test(name))) { return res.status(400).send({ msg: "name is not valid!!" }) }
+        if (!(/^[A-Za-z]+$/.test(name))) { return res.status(400).send({ msg: "name is not valid!!" }) }
 
         let collageName = await collageModel.findOne({ name: name })
         if (collageName) {
@@ -74,6 +74,7 @@ const validateInternship = async function(req, res, next) {
             if (data.mobile === undefined) {
                 return res.status(400).send({ status: false, msg: "Moblie MISSSING!!" });
             }
+
             // collegeName present or not
             if (!collegeName) return res.status(400).send({ status: false, msg: "Please Enter The Intern's College Name" })
                 // if isDeleted is true

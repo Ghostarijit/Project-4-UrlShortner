@@ -1,14 +1,21 @@
 const express = require("express");
 const router = express.Router();
-const internshipController = require("../controllers/internshipController");
-const collageController =require("../controllers/collageController")
-const getController = require("../controllers/getInternshipController")
-const { validatecollage, validateInternship } = require('../middleware/valid');
+//const internshipController = require("../controllers/internshipController");
+//const collageController =require("../controllers/collageController")
+//const getController = require("../controllers/getInternshipController")
+const postUrl = require("../controllers/urlController")
 
-router.post("/functionup/colleges",validatecollage,collageController.createCollage);
+const code = require("../controllers/codeController")
 
-router.post("/functionup/interns",validateInternship,internshipController.createInternship);
 
-router.get("/functionup/collegeDetails",getController.getColleges)
 
-module.exports = router;
+
+//const { validatecollage, validateInternship } = require('../middleware/valid');
+
+//router.post("/functionup/colleges",validatecollage,collageController.createCollage);
+
+router.post("/url/shorten",postUrl.urlCreate);
+
+router.get("/:urlCode",code.urlCode)
+
+module.exports = router; 
