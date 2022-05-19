@@ -37,32 +37,7 @@ const GET_ASYNC = promisify(redisClient.GET).bind(redisClient);
 
 const urlCode = async (req, res) => {
     try {
-        // find a document match to the code in req.params.code
-
-
-      //  if (req.params.urlCode == undefined)
-      //  return res.status(400).send({ status: false, message: "bookId is required." });
-      //  Code = req.params.urlCode
-
-       
-
-        //let url = await urlModel.findOne({ urlCode: Code })
-        //if (url) {
-            // when valid we perform a redirect
-           // return res.redirect(url.longUrl)
-       // } else {
-            // else return a not found 404 status
-           // return res.status(404).json('No URL Found')
-       // }
-       
-       // let cahcedCodeData = await GET_ASYNC(`${req.params.urlCode}`)
-       // if(cahcedCodeData) {
-       //   res.send(cahcedCodeData)
-      //  } else {
-         // let url = await urlModel.findOne(req.params.urlCode);
-        //  await SET_ASYNC(`${req.params.urlCode}`, JSON.stringify(url))
-        //  res.send({ data: url.longUrl });
-       // }
+      
         let Code=req.params.urlCode
         let cahcedUrlCode = await GET_ASYNC(`${Code}`)   
         if(cahcedUrlCode) {
