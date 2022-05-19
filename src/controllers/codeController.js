@@ -20,7 +20,7 @@ redisClient.on("connect", async function () {
   console.log("Connected to Redis..");
 });
 
-redisClient.on("ready", async function () {
+redisClient.on("read", async function () {
     console.log("Connected to Redis and ready");
   });
 
@@ -30,7 +30,6 @@ redisClient.on("ready", async function () {
 //2. use the commands :
 
 //Connection setup for redis
-
 const SET_ASYNC = promisify(redisClient.SET).bind(redisClient);
 const GET_ASYNC = promisify(redisClient.GET).bind(redisClient);
 
@@ -39,6 +38,9 @@ const urlCode = async (req, res) => {
     try {
       
         let Code=req.params.urlCode
+        if(!Code){
+          res.status(401).send({status:false,msg:"please provide UrlCode"})
+        }
         let cahcedUrlCode = await GET_ASYNC(`${Code}`)   
         if(cahcedUrlCode) {
             let parsedUrlCode=JSON.parse(cahcedUrlCode)
@@ -56,6 +58,4 @@ const urlCode = async (req, res) => {
         res.status(500).json('Server Error')
     }
 }
-
-
 module.exports.urlCode = urlCode

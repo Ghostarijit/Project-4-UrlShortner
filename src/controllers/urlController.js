@@ -50,7 +50,7 @@ const urlCreate = async function (req, res) {
     // url exist and return the respose
     if (dataa) {
       return res.status(200).send({status: true,msg:"already present",
-          dataa: {
+          dataa: { 
             longUrl: dataa.longUrl,
             shortUrl: dataa.shortUrl,
             urlCode: dataa.urlCode,
@@ -58,7 +58,7 @@ const urlCreate = async function (req, res) {
         });
     }
     // if valid, we create the url code
-    const urlCode = shortId.generate();
+    const urlCode = shortId.generate()//.toLocaleLowerCase();
 
     // join the generated short code the the base url
     const shortUrl = baseUrl + "/" + urlCode;
@@ -75,9 +75,11 @@ const urlCreate = async function (req, res) {
           urlCode: code.urlCode,
         },
       });
+
   } catch (err) {
     return res.status(500).send({ status: false, message: err.message });
   }
+  
 };
 
  module.exports.urlCreate = urlCreate;
